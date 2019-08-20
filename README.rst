@@ -1,5 +1,11 @@
+changed to use our default VOC format.
+original: https://github.com/cgvict/roLabelImg.git
+
+Use with python3 and requires pyQT5
+pip3 install pyQT5
+
 roLabelImg
-========
+==========
 
 .. image:: https://img.shields.io/pypi/v/labelimg.svg
         :target: https://pypi.python.org/pypi/labelimg
