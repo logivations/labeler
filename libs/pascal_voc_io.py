@@ -118,7 +118,7 @@ class PascalVocWriter:
         for each_object in self.boxlist:
             object_item = SubElement(top, 'object')
             typeItem = SubElement(object_item, 'type')
-            typeItem.text = "bndbox"
+            typeItem.text = "bounding_box"
             name = SubElement(object_item, 'name')
             try:
                 name.text = unicode(each_object['name'])
@@ -261,7 +261,7 @@ class PascalVocReader:
             typeItem = object_iter.find('type')
 
             # print(typeItem.text)
-            if typeItem.text == 'bndbox':
+            if typeItem.text == 'bounding_box':
                 bndbox = object_iter.find("bndbox")
                 label = object_iter.find('name').text
                 # Add chris
@@ -284,3 +284,22 @@ class PascalVocReader:
                 pass
 
         return True
+
+if __name__ == '__main__':
+    print("in main-2")
+    #par = PascalVocReader("c:/nfoler/1.xml")
+    #print(par.getShapes())
+    import os
+    objtype = {}
+    for root, dirs, files in os.walk('/data/workplaceannotate3/annotations_new'):
+        for file in files:
+            p = os.path.join(root, file)
+            par = PascalVocReader(p)
+            for v,i in enumerate(par.shapes):
+                print(v,i)
+                try:
+                    objtype[par.shapes[v][0]] +=1
+                except:
+                    print('ex')
+                    objtype[par.shapes[v][0]] = 1
+            print (objtype)

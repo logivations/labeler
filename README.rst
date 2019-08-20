@@ -1,8 +1,3 @@
-original repo
-https://github.com/cgvict/roLabelImg.git
-
-we modified it for our VOC save format
-
 roLabelImg
 ========
 

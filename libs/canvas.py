@@ -109,7 +109,7 @@ class Canvas(QWidget):
     def mouseMoveEvent(self, ev):
         """Update line with last point and current coordinates."""
         pos = self.transformPos(ev.pos())
-
+        self.lpos= pos
         self.restoreCursor()
 
         # Polygon drawing.
@@ -536,6 +536,8 @@ class Canvas(QWidget):
         if self.selectedShape:
             shape = self.selectedShape.copy()
             self.deSelectShape()
+            print(shape)
+            print(self.lpos)
             self.shapes.append(shape)
             shape.selected = True
             self.selectedShape = shape
@@ -547,10 +549,13 @@ class Canvas(QWidget):
         # Give up if both fail.
         point = shape[0]
         offset = QPointF(2.0, 2.0)
+        offset = self.lpos-point
         self.calculateOffsets(shape, point)
+        print(shape[0])
         self.prevPoint = point
-        if not self.boundedMoveShape(shape, point - offset):
-            self.boundedMoveShape(shape, point + offset)
+        shape.moveBy(offset)
+        #if not self.boundedMoveShape(shape, point - offset):
+         #   self.boundedMoveShape(shape, point + offset)
 
     def paintEvent(self, event):
         if not self.pixmap:

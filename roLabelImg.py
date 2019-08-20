@@ -630,8 +630,12 @@ class MainWindow(QMainWindow, WindowMixin):
         item = item if item else self.currentItem()
         text = self.labelDialog.popUp(item.text())
         if text is not None:
-            item.setText(text)
-            self.setDirty()
+            #items = self.labelList.item(0)
+            #print(items)
+            for i in xrange(self.labelList.count()):
+                item = self.labelList.item(i)
+                item.setText(text)
+                self.setDirty()
 
     # Tzutalin 20160906 : Add file list and dock to move faster
     def fileitemDoubleClicked(self, item=None):
