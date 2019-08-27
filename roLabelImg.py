@@ -632,7 +632,7 @@ class MainWindow(QMainWindow, WindowMixin):
         if text is not None:
             #items = self.labelList.item(0)
             #print(items)
-            for i in xrange(self.labelList.count()):
+            for i in range(self.labelList.count()):
                 item = self.labelList.item(i)
                 item.setText(text)
                 self.setDirty()
