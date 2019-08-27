@@ -651,6 +651,10 @@ class MainWindow(QMainWindow, WindowMixin):
         text = self.labelDialog.popUp(item.text())
         if text is not None:
             item.setText(text)
+            for i in xrange(self.labelList.count()):
+                item = self.labelList.item(i)
+                item.setText(text)
+                self.setDirty()
             self.setDirty()
 
     # Tzutalin 20160906 : Add file list and dock to move faster
